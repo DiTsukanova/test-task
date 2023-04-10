@@ -45,7 +45,7 @@ body {
     color: white;
 }
 
-form__button:hover {
+.form__button:hover {
 	background-color:#2B81E4;
 }
 

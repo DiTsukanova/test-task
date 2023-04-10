@@ -1,0 +1,49 @@
+.btn {
+  border-radius: 0;
+}
+
+.row>* {
+  padding: 0;
+}
+
+.col-12, .col {
+  border: 1px solid black;
+}
+
+.visible {
+  display: none;
+}
+
+#button1 {
+  background-color: yellow;
+}
+
+#button2 {
+  background-color: green;
+}
+
+.left, .middle, .right {
+  height: 25px;
+}
+
+.left {
+  background-color: red;
+}
+
+.middle {
+  background-color: white;
+  border: 1px dashed black;
+}
+
+.active-block {
+  order: -1;
+}
+
+.right {
+  background-color: blue;
+}
+
+.modal-body {
+  text-align: center;
+  font-size: 30px;
+}

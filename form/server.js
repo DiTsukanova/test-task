@@ -1,35 +1,55 @@
 const http = require('http');
 const url = require('url');
+const fs = require("fs");
 
+const responce = (resp, status) => {
+    resp.writeHead(status);
+    resp.end();
+}
 
-server = http.createServer(function (req, res) {
-    res.setHeader("Content-Type", "application/json");
-    const urlParams = url.parse(req.url);
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'OPTIONS, GET',
-        'Access-Control-Max-Age': 2592000
-    };
-
-    if (req.method === 'OPTIONS') {
-        res.writeHead(204, headers);
-        res.end();
+const server = http.createServer((req, resp) => {
+    const params = url.parse(req.url);
+    if (req.method === 'GET' && params.path === '/') {
+        fs.readFile('./index.html', "utf8", (err, data) => {
+            if (err) {
+                responce(resp, 500);
+                return;
+            }
+            resp.end(data);
+        });
         return;
     }
 
-    if (urlParams.pathname == '/form') {
-        res.writeHead(200, headers);
-        res.end(JSON.stringify({
-            queryString: urlParams.query,
-        }));
+    if (req.method === 'GET' && params.path === '/style.css') {
+        fs.readFile('./style.css', "utf8", (err, data) => {
+            if (err) {
+                responce(resp, 500);
+                return;
+            }
+            resp.end(data);
+        })
         return;
     }
 
-    res.writeHead(400, headers);
-    res.end(JSON.stringify({
-        message: "Ошибка"
-    }));
+    if (req.method === 'GET' && params.path === '/form.js') {
+        fs.readFile('./form.js', "utf8", (err, data) => {
+            if (err) {
+                responce(resp, 500);
+                return;
+            }
+            resp.end(data);
+        })
+        return;
+    }
 
+    if (req.method === 'GET' && params.pathname === '/form') {
+        resp.setHeader('Content-Type', 'application/json');
+        resp.end(JSON.stringify(params.query));
+        return;
+    }
+
+    resp.writeHead(404);
+    resp.end();
 });
 
 server.listen(8080);
