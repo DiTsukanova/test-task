@@ -12,10 +12,10 @@ form.addEventListener('submit', (e) => {
 
     fetch('/form?' + params).then(res => {
         if (res.status !== 200) {
-            alert('Ошибка')
+            alert('Ошибка');
             return;
         }
 
         res.json().then(res => alert('RESPONSE: ' + res));
-    })
+    });
 });
