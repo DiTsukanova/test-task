@@ -1,17 +1,21 @@
-window.addEventListener('load', function () {
-    const modal = new bootstrap.Modal(document.getElementById('modal'));
-    modal.show();
-});
-
+const modal = new bootstrap.Modal(document.getElementById('modal'));
 const button1 = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const header = document.getElementById('header');
 const middleBlock = document.querySelector('.middle');
 
+function toggleClass(elem, classElem) {
+    elem.classList.toggle(classElem);
+}
+
+window.addEventListener('load', () => {
+    modal.show();
+});
+
 button1.addEventListener('click', () => {
-    header.classList.toggle('visible');
+    toggleClass(header, 'visible')
 });
 
 button2.addEventListener('click', () => {
-     middleBlock.classList.toggle('active-block');
+    toggleClass(middleBlock, 'active-block')
 });
