@@ -6,7 +6,6 @@ form.addEventListener('submit', (e) => {
     const formData = Object.fromEntries(new FormData(form));
     dataContainer.innerHTML = JSON.stringify(formData);
 
-
     const params = Object.entries(formData).map((elem) => {
         return `${elem[0]}=${elem[1]}`;
     }).join('&');
